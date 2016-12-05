@@ -9,8 +9,8 @@
 using namespace std;
 int main(int argc, char* argv[]){
   string fname1 = argv[1];
-  int numc = stoi( argv[2] );
-  int seed = stoi( argv[3] );
+  int numc = atoi( argv[2] );
+  int seed = atoi( argv[3] );
   vector<vector<double>> vecs;
   string buf;
   ifstream ifile1( fname1 );
@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
     istringstream iss(buf);
     vector<double> vec;
     string buf2;
-    while( iss >> buf2 ) vec.emplace_back(stod(buf2));
+    while( iss >> buf2 ) vec.emplace_back(atof(buf2.c_str()));
     vecs.emplace_back(vec.begin(),vec.end());
   }
   ifile1.close();

@@ -10,8 +10,8 @@
 using namespace std;
 int main(int argc, char* argv[]){
   string fname1 = argv[1];
-  int      seed = stoi( argv[2] );
-  double    gma = stod( argv[3] );
+  int      seed = atoi( argv[2] );
+  double    gma = atof( argv[3] );
   vector<vector<double>> vecs;
   vector<int> lbls;
   string buf;
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
     istringstream iss(buf);
     vector<double> vec;
     string buf2;
-    while( iss >> buf2 ) vec.emplace_back(stod(buf2));
+    while( iss >> buf2 ) vec.emplace_back(atof(buf2.c_str()));
     vecs.emplace_back(vec.begin(),prev(vec.end()));
     lbls.emplace_back((int)vec.back());
   }

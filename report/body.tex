@@ -141,7 +141,35 @@ TBD
 導出過程も含めて書きなさい。
 
 \subsection{【回答】}
-TBD
+
+青い箱を選ぶ事象を$B$、オレンジを選ぶ事象を$O$とすると、
+求める量は$P(B|O)$である。ベイズの定理より、
+\begin{equation}
+\label{p04sol}
+P(B|O)=\frac{P(B)P(O|B)}{P(O)}
+\end{equation}
+題意より
+\begin{equation}
+P(B) = \frac{3}{5}, P(B^C)=\frac{2}{5}, P(O|B)=\frac{1}{4}, P(O|B^C)=\frac{3}{4}
+\end{equation}
+である。右肩の$C$は余事象を表す。例えば、$B^C$は赤い箱を選ぶ事象である。
+これらを式(\ref{p04sol})に代入して、
+\begin{equation}
+(\textrm{式(\ref{p04sol})の分子})=\frac{3}{5}\times\frac{1}{4}=\frac{3}{20}
+\end{equation}
+\begin{eqnarray}
+(\textrm{式(\ref{p04sol})の分母})&=&P(O) \\
+&=& P(O,B)+P(O,B^C) \\
+&=& P(B)P(O|B)+P(B^C)P(O|B^C) \\
+&=& \frac{3}{5}\times\frac{1}{4}+\frac{2}{5}\times\frac{3}{4} \\
+&=& \frac{3}{20}+\frac{6}{20} \\
+&=& \frac{9}{20}
+\end{eqnarray}
+したがって、答えは
+\begin{equation}
+\frac{3}{20}\times\frac{20}{9} = \frac{1}{3}
+\end{equation}
+となる。
 
 \section{}
 教科書の表5\.2「フルーツのブレンド割合」の値は、
@@ -152,7 +180,35 @@ TBD
 を求め比較しなさい。
 
 \subsection{【回答】}
-TBD
+
+\begin{equation}
+\log P(C^k) + \sum_{m}x_m\log q_m^k
+\end{equation}
+を計算すればよい。ここで、$C^k$は壷$k$を選ぶ事象、$P(C^k)$はその確率、
+$m$は果物の番号(たとえばマンゴーなら$m=1$、ナタデココなら$m=2$など)、
+$x_m$は果物$m$の個数、$q_m^k$は壷$k$の中の果物$m$の割合である。
+全ての$k$において$P(C^k)$は一定なので、これは無視してよく、結局
+\begin{equation}
+\sum_{m}x_m\log q_m^k
+\end{equation}
+を計算し、比較すればよい。\\
+トロピカルの場合、
+\begin{equation}
+\log 0.5 + 2\log 0.1 + 3\log 0.03 + 5\log 0.04 \simeq -31.9
+\end{equation}
+クラシックの場合、
+\begin{equation}
+\log 0.05 + 2\log 0.1 + 3\log 0.1 + 5\log 0.1 \simeq -26.0
+\end{equation}
+山形の場合、
+\begin{equation}
+\log 0.03 + 2\log 0.1 + 3\log 0.15 + 5\log 0.4 \simeq -18.4
+\end{equation}
+山梨の場合、
+\begin{equation}
+\log 0.05 + 2\log 0.1 + 3\log 0.5 + 5\log 0.05 \simeq -24.7
+\end{equation}
+となる。従って、山形の壷である可能性が最も高い。
 
 \section{}
 フルーツポンチをgenPunchで生成し、

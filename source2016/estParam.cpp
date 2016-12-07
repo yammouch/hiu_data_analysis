@@ -10,8 +10,8 @@ int main(int argc, char* argv[]){
   string fnameRatio = argv[1];
   string fnamePrior = argv[2];
   string fnamePunch = argv[3];   // フルーツポンチファイル
-  int numc = stoi(argv[4]);      // クラス（＝壺）数
-  int ndim = stoi(argv[5]);      // 特徴（＝果物）数
+  int numc = atoi(argv[4]);      // クラス（＝壺）数
+  int ndim = atoi(argv[5]);      // 特徴（＝果物）数
   string buf;
   vector<vector<double>> Punch;  // フルーツポンチの情報を格納
   vector<int> Cnum;              // もし，クラス（壺）情報があれば格納
@@ -23,11 +23,11 @@ int main(int argc, char* argv[]){
     string buf2;
     //-- カンマ区切りで，前半（ボウル情報）と後半（壺情報）を分離 
     while( getline(iss, buf2, ',') )  vbuf.emplace_back(buf2);        
-    if(vbuf.size()==2) Cnum.emplace_back(stoi(vbuf[1])); //真の壺情報格納
+    if(vbuf.size()==2) Cnum.emplace_back(atoi(vbuf[1].c_str())); //真の壺情報格納
     else               Cnum.emplace_back(-1); //壺情報が無いときは-1とする
     istringstream iss2(vbuf[0]);
     //-- カンマ区切りの前半（ボウル情報）を空白区切りで，切り出し
-    while( iss2 >> buf2 ) vec.emplace_back(stod(buf2));
+    while( iss2 >> buf2 ) vec.emplace_back(atof(buf2.c_str()));
     Punch.emplace_back(vec.begin(),vec.end());
   }
   ifilePunch.close();

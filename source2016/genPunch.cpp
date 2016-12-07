@@ -9,9 +9,9 @@ using namespace std;
 int main(int argc, char* argv[]){
   string fnameRatio = argv[1];
   string fnamePrior = argv[2];
-  int nvec          = stoi(argv[3]); // ボウル数＝ベクトル数N
-  int nFruits       = stoi(argv[4]); // １つのボウルのために生成する果物数
-  int seed          = stoi(argv[5]); // 乱数の種
+  int nvec          = atoi(argv[3]); // ボウル数＝ベクトル数N
+  int nFruits       = atoi(argv[4]); // １つのボウルのために生成する果物数
+  int seed          = atoi(argv[5]); // 乱数の種
   string buf;
   vector<vector<double>> RatioVecs;  // 果物が出現する条件付き確率を格納
   ifstream ifileRatio( fnameRatio );
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
     istringstream iss(buf);
     vector<double> vec;
     string buf2;
-    while( iss >> buf2 ) vec.emplace_back(stod(buf2));
+    while( iss >> buf2 ) vec.emplace_back(atof(buf2.c_str()));
     RatioVecs.emplace_back(vec.begin(),vec.end());
   }
   ifileRatio.close();

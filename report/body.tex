@@ -32,11 +32,20 @@ TBD
 
 \subsection{【回答】}
 
-\paragraph{乱数の種を振り、k-meansアルゴリズムと競合学習を比較}
-TBD
+\paragraph{[乱数の種を振り、k-meansアルゴリズムと競合学習を比較]}
+本実験では、2乗誤差の$E_Q$と$J_W$の傾向を、
+k-meansアルゴリズムと競合学習とで比較した。
+k-meansアルゴリズム、競合学習ともに、乱数を変えながら10回試行した。
+競合学習の学習率は0.001とした。
+結果を表\ref{tab:k-mean-comp}に示す。
+競合学習の結果は安定している一方、
+k-meansアルゴリズムは、表\ref{tab:k-mean-comp}のグレーのセルに示すように、
+悪い結果が出ることがある。
 
-\begin{table}[h]
+\begin{table}[tbp]
  \begin{center}
+  \caption{k-meansアルゴリズム、競合学習、2乗誤差比較}
+  \label{tab:k-mean-comp}
   \begin{tabular}{|r||r|r|r|} \hline
             & k-means     & \multicolumn{2}{|c|}{競合学習} \\ \cline{2-4}
    試行番号 & $E_Q = J_W$                  & $E_Q$  & $J_W$  \\ \hline \hline
@@ -54,33 +63,63 @@ TBD
  \end{center}
 \end{table}
 
+k-meansアルゴリズムの悪い結果は、
+局所最適解になっていると考えられる。
+良い結果の一例として試行番号1
+のクラスタリング結果を図\ref{fig:Hokkaido_xyl_seed1}に示す。
+また、悪い結果の一例として試行番号4
+のクラスタリング結果を図\ref{fig:Hokkaido_xyl_seed4}に示す。
+これらの間には、
+\begin{itemize}
+\item 図\ref{fig:Hokkaido_xyl_seed4}ではCluster3と4が広い。
+\item 図\ref{fig:Hokkaido_xyl_seed1}のCluster5に相当する地域は、
+      図\ref{fig:Hokkaido_xyl_seed4}ではCluster2と5に分割されている。
+\end{itemize}
+といった差異が見られる。
+また、競合学習のクラスタリング結果を図\ref{fig:Hokkaido_xyl_compLearn}
+に示す。k-meansアルゴリズムの良い結果である図\ref{fig:Hokkaido_xyl_seed1}
+と似ていることがわかる。
+
 \begin{figure}[tbp]
  \begin{minipage}{0.5\hsize}
   \begin{center}
    \includegraphics[width=\hsize]{fig/Hokkaido_xyl_seed1.eps}
   \end{center}
   \caption{k-meanアルゴリズム、良い結果}
-  \label{fig:k-mean-seed1}
+  \label{fig:Hokkaido_xyl_seed1}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \begin{center}
    \includegraphics[width=\hsize]{fig/Hokkaido_xyl_seed4.eps}
   \end{center}
   \caption{k-meanアルゴリズム、悪い結果}
-  \label{fig:k-mean-seed4}
+  \label{fig:Hokkaido_xyl_seed4}
  \end{minipage}
 \end{figure}
 
-\paragraph{競合学習の結果}
-TBD
+\paragraph{競合学習の学習率と2乗誤差の関係}
+
+学習率を振って、反復終了時の2乗誤差$E_Q$と$J_W$を調べた。
+結果を図\ref{fig:compLearn}に示す。
+横軸は学習率、縦軸は$E_Q$と$J_W$である。
+学習率が$10^{-4}$から$10^{-2}$の範囲では、$E_Q$、$J_W$
+共に$4.7\times 10^5$付近で安定している。
+これより学習率が小さくても大きくても、反復終了時の$E_Q$、$J_W$は大きく、
+すなわち悪くなる。
+学習率が小さい時は、重みベクトルが収束し切らないため、
+反復終了時の$E_Q$、$J_W$が大きくなっていると考えられる。
+学習率が大きい時は、局所最適解の近傍まではたどり着くが、
+1反復あたりの重みベクトルの変化量が大きく、
+局所最適解からに近づき切れないため$E_Q$、$J_W$
+が大きい値にとどまっていると考えられる。
 
 \begin{figure}[tbp]
  \begin{minipage}{0.5\hsize}
   \begin{center}
    \includegraphics[width=\hsize]{fig/Hokkaido_xyl_compLearn.eps}
   \end{center}
-  \caption{競合学習、学習率$=1$のクラスタリング結果}
-  \label{fig:compLearn-map}
+  \caption{競合学習、学習率$=0.001$のクラスタリング結果}
+  \label{fig:Hokkaido_xyl_compLearn}
  \end{minipage}
  \begin{minipage}{0.5\hsize}
   \begin{center}
@@ -119,7 +158,10 @@ y軸を境界とする2分割になりました。
 この重みベクトルはどのようなものになるか例を使って説明しなさい。
 
 \subsection{【回答】}
-TBD
+図\ref{fig:problem04}に例を示す。黒塗りの点が重みベクトルを示す。
+白抜きの点は、各市町村である。中央の実線が$y$軸であり、
+2つの重みベクトルの垂直二等分線になる。
+すなわち、重みベクトルは、$y$軸に関して線対称になる。
 
 \begin{figure}[tbp]
  \begin{center}
